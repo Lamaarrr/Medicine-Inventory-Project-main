@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Inventory Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/medicines">Medicines</a>
+            <a href="/patients">Patients</a>
+            <a href="/prescriptions">Prescriptions</a>
+            <a href="/bills">Bills</a>
+        </nav>
+
+        <header>
+            <h1>Medicine Inventory Management System</h1>
+            <p class="muted">Simple dashboard overview</p>
+        </header>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>Total Patients</h3>
+                <div class="value">{{ patients_count }}</div>
+            </div>
+            <div class="card">
+                <h3>Total Medicines</h3>
+                <div class="value">{{ medicines_count }}</div>
+            </div>
+            <div class="card">
+                <h3>Total Prescriptions</h3>
+                <div class="value">{{ prescriptions_count }}</div>
+            </div>
+            <div class="card">
+                <h3>Total Bills</h3>
+                <div class="value">{{ bills_count }}</div>
+            </div>
+        </div>
+
+        <h2>Latest Medicines</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Medicine</th>
+                        <th>Quantity</th>
+                        <th>Expiry Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in latest_medicines %}
+                    <tr>
+                        <td>{{ item.medicine_name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.expiry_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Latest Prescriptions</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Prescription ID</th>
+                        <th>Patient</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in latest_prescriptions %}
+                    <tr>
+                        <td>{{ item.prescription_id }}</td>
+                        <td>{{ item.full_name }}</td>
+                        <td>{{ item.prescription_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

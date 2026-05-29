@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bills</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/medicines">Medicines</a>
+            <a href="/patients">Patients</a>
+            <a href="/prescriptions">Prescriptions</a>
+            <a href="/bills">Bills</a>
+        </nav>
+
+        <header>
+            <h1>Bills</h1>
+            <p class="muted">View calculated totals</p>
+        </header>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Prescription</th>
+                        <th>Patient</th>
+                        <th>Subtotal</th>
+                        <th>Tax</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in bills %}
+                    <tr>
+                        <td>{{ item.bill_id }}</td>
+                        <td>{{ item.prescription_id }}</td>
+                        <td>{{ item.full_name }}</td>
+                        <td>{{ item.subtotal }}</td>
+                        <td>{{ item.tax }}</td>
+                        <td>{{ item.discount }}</td>
+                        <td>{{ item.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
